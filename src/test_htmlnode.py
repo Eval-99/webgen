@@ -8,27 +8,27 @@ class TestHTMLNode(unittest.TestCase):
 
     def test_html_props_eq(self):
         html_node = HTMLNode(None, None, None, {"key1": "val1", "key2": "val2"})
-        html_str = 'HTMLNode(None, None, None, {key1="val1" key2="val2"})'
+        html_str = "HTMLNode(None, None, None, {'key1': 'val1', 'key2': 'val2'})"
         self.assertEqual(str(html_node), str(html_str))
 
     def test_html_props_not_eq(self):
         html_node = HTMLNode(None, None, None, {"key1": "val1", "key2": "val2"})
-        html_str = 'HTMLNode(None, None, None, {key1="val1")'
+        html_str = "HTMLNode(None, None, None, {'key1': 'val1'})"
         self.assertNotEqual(str(html_node), str(html_str))
 
     def test_html_props_none_eq(self):
         html_node = HTMLNode(None, None, None)
-        html_str = "HTMLNode(None, None, None)"
+        html_str = "HTMLNode(None, None, None, None)"
         self.assertEqual(str(html_node), str(html_str))
 
     def test_html_props_none_not_eq(self):
         html_node = HTMLNode(None, None, None)
-        html_str = 'HTMLNode(None, None, None, {key1="val1")'
+        html_str = "HTMLNode(None, None, None, {'key1': 'val1'})"
         self.assertNotEqual(str(html_node), str(html_str))
 
     def test_html_props_empty(self):
         html_node = HTMLNode()
-        html_str = "HTMLNode(None, None, None"
+        html_str = "HTMLNode(None, None, None)"
         self.assertNotEqual(str(html_node), str(html_str))
 
     def test_html_props_only(self):

@@ -11,13 +11,7 @@ class HTMLNode:
     def props_to_html(self):
         if self.props is None:
             return ""
-        props_str = " ".join([f'{k}="{v}"' for k, v in self.props.items()])
-        return f"{props_str}"
+        return " ".join([f'{k}="{v}"' for k, v in self.props.items()])
 
     def __repr__(self):
-        return (
-            f"HTMLNode({self.tag}, "
-            f"{self.value}, "
-            f"{self.children}"
-            f"{', {' + self.props_to_html() + '}' if self.props_to_html() else self.props_to_html()})"
-        )
+        return f"HTMLNode({self.tag}, {self.value}, {self.children}, {self.props})"
