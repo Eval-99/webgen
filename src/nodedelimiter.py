@@ -16,6 +16,8 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
 
         for word in node_words:
             index = word
+            if word.startswith(delimiter) and delimiter_open is True:
+                raise Exception("Invalid Markdown syntax. Delimiter not closed.")
             if word.startswith(delimiter):
                 if text_normal != "":
                     node_lst.append(TextNode(text_normal, TextType.TEXT))
