@@ -22,14 +22,17 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
                 if text_normal != "":
                     node_lst.append(TextNode(text_normal, TextType.TEXT))
                 text_normal = ""
-                word = word[1:]
                 delimiter_open = True
             if word.endswith(delimiter) and delimiter_open is False:
                 raise Exception("Invalid Markdown syntax. Delimiter not closed.")
             if delimiter_open is True:
                 text_delimiter += word + " "
                 if word.endswith(delimiter):
-                    node_lst.append(TextNode(text_delimiter[:-2], text_type))
+                    node_lst.append(
+                        TextNode(
+                            str(text_delimiter[:-1]).replace(delimiter, ""), text_type
+                        )
+                    )
                     text_delimiter = ""
                     delimiter_open = False
                     try:
