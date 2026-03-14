@@ -13,6 +13,8 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
         delimiter_open = False
 
         node_words = node.text.split()
+        if node_lst != []:
+            node_words[0] = " " + node_words[0]
 
         for word in node_words:
             index = word
