@@ -121,10 +121,18 @@ def split_nodes_image(old_nodes):
 
 
 def text_to_nodes(text):
-    thing = [TextNode(text, TextType.TEXT)]
-    blargus = split_nodes_delimiter(thing, "**", TextType.BOLD)
-    blargus = split_nodes_delimiter(blargus, "_", TextType.ITALIC)
-    blargus = split_nodes_delimiter(blargus, "`", TextType.CODE)
-    blargus = split_nodes_link(blargus)
-    blargus = split_nodes_image(blargus)
-    return blargus
+    return split_nodes_link(
+        split_nodes_image(
+            split_nodes_delimiter(
+                split_nodes_delimiter(
+                    split_nodes_delimiter(
+                        [TextNode(text, TextType.TEXT)], "**", TextType.BOLD
+                    ),
+                    "_",
+                    TextType.ITALIC,
+                ),
+                "`",
+                TextType.CODE,
+            )
+        )
+    )
