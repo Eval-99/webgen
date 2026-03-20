@@ -2,13 +2,6 @@ import os
 import shutil
 
 
-def main():
-    if os.path.exists("public"):
-        shutil.rmtree("public")
-
-    copy_recur(os.path.join(os.getcwd(), "static"), os.path.join(os.getcwd(), "public"))
-
-
 def copy_recur(source, destination):
     if not os.path.exists(destination):
         os.mkdir(destination)
@@ -19,7 +12,3 @@ def copy_recur(source, destination):
             continue
         else:
             copy_recur(os.path.join(source, item), os.path.join(destination, item))
-
-
-if __name__ == "__main__":
-    main()
