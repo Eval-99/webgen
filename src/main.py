@@ -1,11 +1,14 @@
-from textnode import TextNode, TextType
+import os
+import shutil
+
+from copy_recur import copy_recur
 
 
 def main():
-    text_node = TextNode(
-        "This is some anchor text", TextType.LINK, "https://www.boot.dev"
-    )
-    print(text_node)
+    if os.path.exists("public"):
+        shutil.rmtree("public")
+
+    copy_recur(os.path.join(os.getcwd(), "static"), os.path.join(os.getcwd(), "public"))
 
 
 if __name__ == "__main__":
