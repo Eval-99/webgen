@@ -21,3 +21,18 @@ def generate_page(from_path, template_path, dest_path):
 
     with open(f"{dest_path}/{from_path.split('/')[-1].split('.')[0]}.html", "w") as f:
         f.write(html_doc)
+
+
+def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
+    for item in os.listdir(dir_path_content):
+        if os.path.isfile(os.path.join(dir_path_content, item)):
+            generate_page(
+                os.path.join(dir_path_content, item), template_path, dest_dir_path
+            )
+            continue
+        else:
+            generate_pages_recursive(
+                os.path.join(dir_path_content, item),
+                template_path,
+                os.path.join(dest_dir_path, item),
+            )

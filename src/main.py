@@ -2,7 +2,7 @@ import os
 import shutil
 
 from copy_recur import copy_recur
-from page_gen import generate_page
+from page_gen import generate_pages_recursive
 
 
 def main():
@@ -10,7 +10,7 @@ def main():
         shutil.rmtree("public")
 
     copy_recur(os.path.join(os.getcwd(), "static"), os.path.join(os.getcwd(), "public"))
-    generate_page("content/index.md", "template.html", "public")
+    generate_pages_recursive("content", "template.html", "public")
 
 
 if __name__ == "__main__":
