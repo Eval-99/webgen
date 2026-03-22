@@ -84,6 +84,14 @@ def extract_markdown_links(text):
     return re.findall(r"(?<!!)\[([^\[\]]*)\]\(([^\(\)]*)\)", text)
 
 
+def extract_title(text):
+    lines = text.split("\n")
+    for line in lines:
+        if line.startswith("# "):
+            return line[1:].strip()
+    raise Exception("No title heading in markdown file")
+
+
 def split_nodes_link(old_nodes):
     node_lst = []
     for node in old_nodes:

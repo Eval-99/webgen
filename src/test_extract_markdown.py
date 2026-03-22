@@ -3,6 +3,7 @@ import unittest
 from extract_markdown import (
     extract_markdown_images,
     extract_markdown_links,
+    extract_title,
     split_nodes_delimiter,
     split_nodes_image,
     split_nodes_link,
@@ -178,6 +179,30 @@ class TestInlineMarkdown(unittest.TestCase):
             ],
             new_nodes,
         )
+
+    def test_extract_title_big_file(self):
+        md = """
+# Tolkien Fan Club      
+
+![JRR Tolkien sitting](/images/tolkien.png)
+
+Here's the deal, **I like Tolkien**.
+
+> "I am in fact a Hobbit in all but size."
+>
+> -- J.R.R. Tolkien
+        """
+        result = extract_title(md)
+        self.assertEqual("Tolkien Fan Club", result)
+
+    def test_extract_title_hello(self):
+        md = "# Hello"
+        result = extract_title(md)
+        self.assertEqual("Hello", result)
+
+    def test_extract_title_exception(self):
+        md = "Hello"
+        self.assertRaises(Exception, extract_title, md)
 
 
 if __name__ == "__main__":
